@@ -42,7 +42,7 @@ block content
 							th
 								| Jumlah Ram
 							th
-								| Worth It?
+								| Harga 
 							th
 								| Action
 							if messages.msg_error
@@ -54,7 +54,7 @@ block content
 										td #{row.seri}
 										td #{row.prosesor}
 										td #{row.jumlah_ram}
-										td #{row.worth_it}
+										td #{row.harga}
 										td
 											div(style='display:inline-block')
 												a(href='/smartphone/edit/#{row.id}').btn.btn-sm.btn-primary

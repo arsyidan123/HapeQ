@@ -91,13 +91,13 @@ router.put(
       v_seri = req.sanitize("seri").escape().trim();
       v_prosesor = req.sanitize("prosesor").escape().trim();
       v_jumlah_ram = req.sanitize("jumlah_ram").escape().trim();
-      v_worth_it = req.sanitize("worth_it").escape();
+      v_harga = req.sanitize("harga").escape();
 
       var smartphone = {
         seri: v_seri,
         prosesor: v_prosesor,
         jumlah_ram: v_jumlah_ram,
-        worth_it: v_worth_it,
+        harga: v_harga,
       };
 
       var update_sql = "update smartphone SET ? where id = " + req.params.id;
@@ -113,7 +113,7 @@ router.put(
                 seri: req.param("seri"),
                 prosesor: req.param("prosesor"),
                 jumlah_ram: req.param("jumlah_ram"),
-                worth_it: req.param("worth_it"),
+                harga: req.param("harga"),
               });
             } else {
               req.flash("msg_info", "Update smartphone success");
@@ -143,13 +143,13 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
     v_seri = req.sanitize("seri").escape().trim();
     v_prosesor = req.sanitize("prosesor").escape().trim();
     v_jumlah_ram = req.sanitize("jumlah_ram").escape().trim();
-    v_worth_it = req.sanitize("worth_it").escape();
+    v_harga = req.sanitize("harga").escape();
 
     var smartphone = {
       seri: v_seri,
       prosesor: v_prosesor,
       jumlah_ram: v_jumlah_ram,
-      worth_it: v_worth_it,
+      harga: v_harga,
     };
 
     var insert_sql = "INSERT INTO smartphone SET ?";
@@ -165,7 +165,7 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
               seri: req.param("seri"),
               prosesor: req.param("prosesor"),
               jumlah_ram: req.param("jumlah_ram"),
-              worth_it: req.param("worth_it"),
+              harga: req.param("harga"),
               session_store: req.session,
             });
           } else {
@@ -198,7 +198,7 @@ router.get("/add", authentication_mdl.is_login, function (req, res, next) {
     seri: "",
     prosesor: "",
     jumlah_ram: "",
-    worth_it: "",
+    harga: "",
     session_store: req.session,
   });
 });
