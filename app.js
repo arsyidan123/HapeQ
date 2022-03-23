@@ -21,7 +21,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({secret:"telkom"}));
+app.use(session({secret:"123456jidan"}));
 app.use(flash());
 app.use(expressValidator());
 app.use(methodOverride(function(req, res){
