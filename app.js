@@ -42,7 +42,7 @@ app.use(
     connection(mysql,{
         host: 'biaxgzva4miillobgzja-mysql.services.clever-cloud.com',
         user: 'um2twz2nygzdlnjl', // your mysql user
-        password : '7bpMgXNejThGXNhUfk2b ', // your mysql password
+        password : '7bpMgXNejThGXNhUfk2b', // your mysql password
         port : 3306, //port mysql
         database:'biaxgzva4miillobgzja' // your database name
     },'pool') //or single
