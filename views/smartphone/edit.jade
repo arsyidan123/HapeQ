@@ -1,0 +1,58 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| HapeQ
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+					
+			.box-body
+				form(role='form',method='post' action='/smartphone/edit/#{(id==undefined) ? data.id : id}')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| Seri Smartphone
+									input(type='text',value="#{data.seri}",name='seri',placeholder='Seri Smartphone', autofocus).form-control
+								.form-group
+									label
+										| Prosesor
+									input(type='text',value="#{ (prosesor == undefined) ? data.prosesor : prosesor }",name='prosesor',placeholder='Prosesor').form-control
+								.form-group
+									label
+										| Jumlah Ram	
+									input(type='text',value="#{ (jumlah_ram == undefined) ? data.jumlah_ram : jumllah_ram }",name='jumlah_ram',placeholder='Jumlah Ram').form-control
+								.form-group
+									label
+										| Worth It?
+									input(type='text',value="#{ (worth_it == undefined) ? data.worth_it : worth_it }",name='worth_it',placeholder='Ya/Tidak').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/smartphone').btn.btn-primary.pull-right
+									| Back
