@@ -4,9 +4,63 @@ var modul = require('../modul/modul');
 
 var session_store;
 /* GET home page. */
+
 router.get('/', function(req, res, next) {
 	res.redirect('/smartphone');
 });
+router.get('/register',function(req,res,next){
+	res.render('main/register',{title:"Register Page"});
+});
+router.post("/register", function (req, res, next) {
+	req.assert("the_email", "Please fill the Email").isEmail();
+	req.assert("the_password", "Please fill the Password").notEmpty();
+	var errors = req.validationErrors();
+	if (!errors) {
+		v_the_email = req.sanitize("the_email").escape().trim();
+		v_the_password = req.sanitize("the_password").escape();
+	var user = {
+		the_email: v_the_email,
+		the_password: v_the_password,
+	};
+
+	var insert_sql = "INSERT INTO user SET ?";
+	req.getConnection(function (err, connection) {
+		var query = connection.query(
+		insert_sql,
+		user,
+		function (err, result) {
+			if (err) {
+			var errors_detail = ("Error Insert : %s ", err);
+			req.flash("msg_error", errors_detail);
+			res.render("main/register", {
+				the_email: req.params("the_email"),
+				the_password: req.params("the_password"),
+				session_store: req.session,
+			});
+			} else {
+			    req.flash("msg_info", "Create Account Success");
+			    res.redirect("/login");
+			}
+		}
+		);
+	});
+	} else {
+	console.log(errors);
+	errors_detail = "<p>Sorry there are error</p><ul>";
+	for (i in errors) {
+		error = errors[i];
+		errors_detail += "<li>" + error.msg + "</li>";
+	}
+	errors_detail += "</ul>";
+	req.flash("msg_error", errors_detail);
+	res.render("main/register", {
+		the_email: req.param("the_email"),
+		the_password: req.param("the_password"),
+		session_store: req.session,
+	});
+	}
+});
+
 router.get('/login',function(req,res,next){
 	res.render('main/login',{title:"Login Page"});
 });

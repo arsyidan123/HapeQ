@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('express-flash');
+var fileUpload = require('express-fileupload');
 var session = require('express-session');
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({secret:"123456jidan"}));
 app.use(flash());
+app.use(fileUpload());
 app.use(expressValidator());
 app.use(methodOverride(function(req, res){
     if (req.body && typeof req.body == 'object' && '_method' in req.body)

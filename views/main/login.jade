@@ -10,6 +10,7 @@ html
 		link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css')
 		link(rel='stylesheet', href='/adminlte/dist/css/AdminLTE.min.css')
 		link(rel='stylesheet', href='/adminlte/plugins/iCheck/square/blue.css')
+	img(src='/adminlte/dist/img/caknun.png',alt='LogoBrand', width=250, height=250, style="display: block; margin:auto")
 	body.hold-transition.login-page
 		.login-box
 			.login-logo
@@ -35,10 +36,8 @@ html
 						span.glyphicon.glyphicon-lock.form-control-feedback
 					.row
 						.col-xs-8
-							.checkbox
-								label
-									input(type="checkbox")
-									|  Ingat Saya
+							a(href='/register').text-center
+								| Register a new member
 						.col-xs-4
 							button(type="submit").btn.btn-primary.btn-block.btn-flat
 								| Masuk

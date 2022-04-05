@@ -1,5 +1,13 @@
 var express = require("express");
 var router = express.Router();
+var http = require("http");
+var fs = require("fs");
+var fileUpload = require("express-fileupload");
+var path = require("path");
+var formidable = require("formidable");
+const check = require("express-validator/check").check;
+const validationResult = require("express-validator/check").validationResult;
+var mv = require("mv");
 var authentication_mdl = require("../middlewares/authentication");
 var session_store;
 /* GET Customer page. */
@@ -93,12 +101,26 @@ router.put(
       v_jumlah_ram = req.sanitize("jumlah_ram").escape().trim();
       v_harga = req.sanitize("harga").escape();
 
-      var smartphone = {
-        seri: v_seri,
-        prosesor: v_prosesor,
-        jumlah_ram: v_jumlah_ram,
-        harga: v_harga,
-      };
+      if (!req.files){ 
+        var smartphone = {
+          seri: v_seri,
+          prosesor: v_prosesor,
+          jumlah_ram: v_jumlah_ram,
+          harga: v_harga,
+        };
+      } else {
+        var file = req.files.gambar;
+        file.mimetype == "image/jpeg";
+        file.mv("public/images/uploads/" + file.name);
+
+        var smartphone = {
+          seri: v_seri,
+          prosesor: v_prosesor,
+          jumlah_ram: v_jumlah_ram,
+          harga: v_harga,
+          gambar: file.name,
+        };
+      }
 
       var update_sql = "update smartphone SET ? where id = " + req.params.id;
       req.getConnection(function (err, connection) {
@@ -145,11 +167,16 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
     v_jumlah_ram = req.sanitize("jumlah_ram").escape().trim();
     v_harga = req.sanitize("harga").escape();
 
+    var file = req.files.gambar;
+    file.nimetype == "image/jpeg";
+    file.mv("public/images/uploads/" + file.name);
+    
     var smartphone = {
       seri: v_seri,
       prosesor: v_prosesor,
       jumlah_ram: v_jumlah_ram,
       harga: v_harga,
+      gambar: file.name,
     };
 
     var insert_sql = "INSERT INTO smartphone SET ?";

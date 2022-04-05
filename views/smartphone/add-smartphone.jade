@@ -12,7 +12,7 @@ block content
                         i.fa.fa-minus
 
             .box-body
-                form(role='form',method='post' action='/smartphone/add')
+                form(role='form',method='post' action='/smartphone/add' enctype='multipart/form-data')
                     .row
                         .col-xs-6
                             .box-body
@@ -27,7 +27,7 @@ block content
                                 .form-group
                                     label
                                         | Seri Smartphone
-                                    input(type='text',value='#{seri}',name='seri',placeholder='Seri Smartphone', autofocus).form-control
+                                    input(type='text',name='seri', placeholder='Seri Smartphone', autofocus).form-control
                                 .form-group
                                     label
                                         | Prosesor
@@ -35,11 +35,15 @@ block content
                                 .form-group
                                     label
                                         | Jumlah Ram
-                                    input(type='text',value='#{jumlah_ram}',name='jumlah_ram',placeholder='Jumlah Ram').form-control
+                                    input(type='text',name='jumlah_ram',placeholder='Jumlah Ram').form-control
                                 .form-group
                                     label
                                         | Harga
                                     input(type='text',name='harga',placeholder='Harga').form-control
+                                .form-group
+                                    label
+                                        | Gambar
+                                    input(type='file',name='gambar',placeholder='Gambar').form-control
                             .box-footer
                                 button(type='submit').btn.btn-primary
                                     | Submit

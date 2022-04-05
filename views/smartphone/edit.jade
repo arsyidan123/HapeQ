@@ -12,7 +12,7 @@ block content
 						i.fa.fa-minus
 					
 			.box-body
-				form(role='form',method='post' action='/smartphone/edit/#{(id==undefined) ? data.id : id}')
+				form(role='form',method='post' action='/smartphone/edit/#{(id==undefined) ? data.id : id}' enctype='multipart/form-data')
 					.row
 						
 						.col-xs-6
@@ -49,6 +49,10 @@ block content
 									label
 										| Harga 
 									input(type='text',value="#{ (harga == undefined) ? data.harga : harga }",name='harga',placeholder='harga').form-control
+								.form-group
+									label
+										| Gambar 
+									input(type='file',name='gambar').form-control
 							.box-footer
 								input(type="hidden",name="_method", value="PUT")
 								button(type='submit').btn.btn-primary
