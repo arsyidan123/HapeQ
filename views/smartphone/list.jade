@@ -44,7 +44,9 @@ block content
 							th
 								| Jumlah Ram
 							th
-								| Harga 
+								| Harga
+							th
+								| Stok 
 							th
 								| Action
 							if messages.msg_error
@@ -59,6 +61,7 @@ block content
 										td #{row.prosesor}
 										td #{row.jumlah_ram}
 										td #{row.harga}
+										td #{row.stok}
 										td
 											div(style='display:inline-block')
 												a(href='/smartphone/edit/#{row.id}').btn.btn-sm.btn-primary

@@ -51,6 +51,10 @@ block content
 									input(type='text',value="#{ (harga == undefined) ? data.harga : harga }",name='harga',placeholder='harga').form-control
 								.form-group
 									label
+										| Stok 
+									input(type='text',value="#{ (stok == undefined) ? data.stok : stok }",name='stok',placeholder='Stok').form-control
+								.form-group
+									label
 										| Gambar 
 									input(type='file',name='gambar').form-control
 							.box-footer

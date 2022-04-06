@@ -100,6 +100,7 @@ router.put(
       v_prosesor = req.sanitize("prosesor").escape().trim();
       v_jumlah_ram = req.sanitize("jumlah_ram").escape().trim();
       v_harga = req.sanitize("harga").escape();
+      v_stok = req.sanitize("stok").escape();
 
       if (!req.files){ 
         var smartphone = {
@@ -107,6 +108,7 @@ router.put(
           prosesor: v_prosesor,
           jumlah_ram: v_jumlah_ram,
           harga: v_harga,
+          stok: v_stok,
         };
       } else {
         var file = req.files.gambar;
@@ -118,6 +120,7 @@ router.put(
           prosesor: v_prosesor,
           jumlah_ram: v_jumlah_ram,
           harga: v_harga,
+          stok: v_stok,
           gambar: file.name,
         };
       }
@@ -136,6 +139,7 @@ router.put(
                 prosesor: req.param("prosesor"),
                 jumlah_ram: req.param("jumlah_ram"),
                 harga: req.param("harga"),
+                stok: req.param("stok"),
               });
             } else {
               req.flash("msg_info", "Update smartphone success");
@@ -166,9 +170,10 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
     v_prosesor = req.sanitize("prosesor").escape().trim();
     v_jumlah_ram = req.sanitize("jumlah_ram").escape().trim();
     v_harga = req.sanitize("harga").escape();
+    v_stok = req.sanitize("stok").escape();
 
     var file = req.files.gambar;
-    file.nimetype == "image/jpeg" | "image/jpg" | "image/png";
+    file.nimetype == "image/jpeg" | "image/jpg" | "image/";
     file.mv("public/images/uploads/" + file.name);
     
     var smartphone = {
@@ -176,6 +181,7 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
       prosesor: v_prosesor,
       jumlah_ram: v_jumlah_ram,
       harga: v_harga,
+      stok: v_stok,
       gambar: file.name,
     };
 
@@ -193,6 +199,7 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
               prosesor: req.param("prosesor"),
               jumlah_ram: req.param("jumlah_ram"),
               harga: req.param("harga"),
+              stok: req.param("stok"),
               session_store: req.session,
             });
           } else {
@@ -226,6 +233,7 @@ router.get("/add", authentication_mdl.is_login, function (req, res, next) {
     prosesor: "",
     jumlah_ram: "",
     harga: "",
+    stok: "",
     session_store: req.session,
   });
 });
