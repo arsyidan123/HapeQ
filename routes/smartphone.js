@@ -173,7 +173,7 @@ router.post("/add", authentication_mdl.is_login, function (req, res, next) {
     v_stok = req.sanitize("stok").escape();
 
     var file = req.files.gambar;
-    file.nimetype == "image/jpeg" | "image/jpg" | "image/";
+    file.nimetype == "image/jpeg" | "image/jpg" | "image/png";
     file.mv("public/images/uploads/" + file.name);
     
     var smartphone = {
